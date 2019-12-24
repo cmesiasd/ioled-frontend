@@ -12,12 +12,9 @@ export default class Heat extends Component {
     }
 
     handleChange = (e) => {
-        if(e.target.value >= 50){
-            this.setState({  color: 'red', inputValue: parseInt(e.target.value)});
-        }
-        else{
-            this.setState({ color: 'green',  inputValue: parseInt(e.target.value) })
-        }
+        var value = parseInt(e.target.value);
+        value >= 50 ? this.setState({color: 'red', inputValue: value}) : this.setState({color: 'green',  inputValue: value})
+
     }
 
     render(){

@@ -40,13 +40,15 @@
 
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+
 
 export default class Timer extends Component {
     state = {
         minutes: 1,
         seconds: 0,
     }
-
+    
     componentDidMount() {
         this.myInterval = setInterval(() => {
             const { seconds, minutes } = this.state
@@ -77,12 +79,27 @@ export default class Timer extends Component {
         const { minutes, seconds } = this.state
         return (
             <div>
+                <form className={"hola"} noValidate>
+                <TextField
+                    id="time"
+                    label="Alarm clock"
+                    type="time"
+                    defaultValue="07:30"
+                    className={"hola"}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                    inputProps={{
+                    step: 300, // 5 min
+                    }}
+                />
+                </form>
                 { minutes === 0 && seconds === 0
                     ? <Typography id="discrete-slider" variant="h4" gutterBottom>
                         Tiempo!
-                      </Typography>
+                    </Typography>
                     : <Typography id="discrete-slider" variant="h4" gutterBottom>
-                        Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                        Tiempo Faltante: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
                     </Typography>
                 }
             </div>
