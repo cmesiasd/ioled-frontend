@@ -37,6 +37,20 @@ export default function InputSlider() {
       setValue(100);
     }
   };
+  const marks = [
+    {
+      value: 0,
+      label: '0°C',
+    },
+    {
+      value: 50,
+      label: '50°C',
+    },
+    {
+      value: 100,
+      label: '100°C',
+    },
+  ];
 
   return (
     <div className={classes.root}>
@@ -46,9 +60,12 @@ export default function InputSlider() {
       <Grid container spacing={2} alignItems="center">
         <Grid item xs>
           <Slider
+            marks={marks}
+            className="py-5"
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
+            valueLabelDisplay="on"
           />
         </Grid>
         <Grid item >
