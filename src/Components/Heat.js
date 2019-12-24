@@ -20,8 +20,8 @@ export default class Heat extends Component {
     render(){
         return (   
             <div>
-                <Typography id="discrete-slider" variant="h4" gutterBottom>
-                    Calor:
+                <Typography id="heat-input" variant="h4" gutterBottom>
+                    Calor
                 </Typography>
                 <input type="number" onChange={this.handleChange} value={this.state.inputValue} style={this.state}/>                
             </div>

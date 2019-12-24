@@ -1,28 +1,17 @@
 import React from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import SliderTemp from './Components/Slider';
-import Timer from './Components/Timer';
-import Heat from './Components/Heat';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: 600,
-  },
-  margin: {
-    height: theme.spacing(3),
-  },
-}));
-
+import Tab from './Components/Tab';
 
 function App() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      < SliderTemp />
-      < Timer />
-      < Heat />
+    <div className= "container-fluid justify-content-center">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <h1 className="navbar-brand">Dashboard FrontEnd iOLED</h1>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+      < Tab />
     </div>
   );
 }

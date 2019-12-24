@@ -1,43 +1,74 @@
 import React from 'react';
-import '../App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import Input from '@material-ui/core/Input';
 
 
-const marks = [
-  {
-    value: 0,
-    label: '0°C',
+const useStyles = makeStyles({
+  root: {
+    width: 500,
   },
-  {
-    value: 100,
-    label: '100°C',
+  input: {
+    width: 50,
   },
-];
+});
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-  
+export default function InputSlider() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(20);
+  const [color, setColor] = React.useState("green");
 
-function SliderTemp() {
+  const handleSliderChange = (event, newValue) => {
+    Number(newValue) >= 50 ? setColor("red") : setColor("green");
+    setValue(newValue);
+  };
+
+  const handleInputChange = event => {
+    setValue(event.target.value === '' ? '' : Number(event.target.value));
+    Number(event.target.value) >= 50 ? setColor("red") : setColor("green");
+  };
+
+  const handleBlur = () => {
+    if (value < 0) {
+      setValue(0);
+    } else if (value > 100) {
+      setValue(100);
+    }
+  };
 
   return (
-    <div className="Slider">
-      <Typography id="discrete-slider" variant="h4" gutterBottom>
+    <div className={classes.root}>
+      <Typography id="slider" variant="h4" gutterBottom>
         Temperatura
       </Typography>
-      <Slider id="slidergg"
-        defaultValue={20}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-custom"
-        step={1}
-        valueLabelDisplay="on"
-        marks={marks}
-      />
-      
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs>
+          <Slider
+            value={typeof value === 'number' ? value : 0}
+            onChange={handleSliderChange}
+            aria-labelledby="input-slider"
+          />
+        </Grid>
+        <Grid item >
+          <Input
+            style={{color}}
+            className={classes.input}
+            value={value}
+            margin="dense"
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            inputProps={{
+              step: 1,
+              min: 0,
+              max: 100,
+              type: 'number',
+              'aria-labelledby': 'input-slider',
+            }}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 }
-
-export default SliderTemp;
